@@ -1,3 +1,8 @@
+User.create!(name:  "Admin",
+             email: "admin@gmail.com",
+             password:              "123456",
+             password_confirmation: "123456",
+             admin: true)
 
 10.times do |n|
   category = Category.create(name: "Category #{n+1}")

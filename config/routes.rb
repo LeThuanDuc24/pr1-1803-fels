@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/signup", to: "users#new"
   get "/show", to: "users#show"
-  delete "/logout", to: "sessions#destroy"
   resources :users do
     member do
       get :following, :followers
@@ -13,10 +12,11 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
   resources :categories
-  resources :words, only: :index
+  resources :words
   namespace :admin do
     root "users#index"
     resources :users, only: [:index, :destroy]
     resources :categories, only: [:index, :show]
+    resources :words, only: [:index, :destroy]
   end
 end
