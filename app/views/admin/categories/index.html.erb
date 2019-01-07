@@ -1,0 +1,20 @@
+<% provide :title, "Elearning-System" %>
+<h1>Categories</h1>
+
+<%= will_paginate @categories%>
+
+<ul class="categories">
+  <% @categories.each do |category| %>
+    <li>
+      <%= link_to category.name, admin_categories_path, class: "pull-left" %>
+      <div class="pull-right">
+          <%= link_to "Start Lesson", "#", class: "btn btn-primary" %>
+          <%= link_to "Add word", "#", class: "btn btn-primary " %>
+          <%= link_to "Edit", "#", class: "btn btn-success " %>
+          <%= link_to "Delete", "#", class: "btn btn-danger" %>
+      </div>
+    </li>
+
+  <% end %>
+</ul>
+<%= will_paginate @categories%>

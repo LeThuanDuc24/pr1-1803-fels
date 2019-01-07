@@ -1,3 +1,22 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root "static_pages#home"
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+  get "/signup", to: "users#new"
+  get "/show", to: "users#show"
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
+  resources :categories
+  resources :words
+  namespace :admin do
+    root "users#index"
+    resources :users, only: [:index, :destroy]
+    resources :categories, only: [:index, :show]
+    resources :words, only: [:index, :destroy]
+  end
 end
